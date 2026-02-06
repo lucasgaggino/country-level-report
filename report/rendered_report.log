@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.14)  6 FEB 2026 07:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.14)  6 FEB 2026 08:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -664,8 +664,10 @@ tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count338
 \l__pdf_internal_box=\box69
+) (rendered_report.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
 )
-No file rendered_report.aux.
 \openout1 = `rendered_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
@@ -682,6 +684,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -744,44 +747,16 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 LaTeX Info: Redefining \. on input line 71.
 LaTeX Info: Redefining \% on input line 71.
-
-
-LaTeX Warning: File `imgs_exec/header-city-1.jpg' not found on input line 80.
-
-
-! Package pdftex.def Error: File `imgs_exec/header-city-1.jpg' not found: using
- draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.80 ...height=7.2cm]{imgs_exec/header-city-1.jpg}
-                                                  };
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 8
-0.
-(C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-
-LaTeX Warning: File `imgs_exec/telcel.png' not found on input line 100.
-
-
-! Package pdftex.def Error: File `imgs_exec/telcel.png' not found: using draft 
-setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.100 ...m, keepaspectratio]{imgs_exec/telcel.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<imgs_exec/header-city-1.jpg, id=4, 3597.44pt x 1188.44pt>
+File: imgs_exec/header-city-1.jpg Graphic file (type jpg)
+<use imgs_exec/header-city-1.jpg>
+Package pdftex.def Info: imgs_exec/header-city-1.jpg  used on input line 80.
+(pdftex.def)             Requested size: 597.50426pt x 204.86105pt.
+<imgs_exec/telcel.png, id=5, 423.5825pt x 119.44624pt>
+File: imgs_exec/telcel.png Graphic file (type png)
+<use imgs_exec/telcel.png>
+Package pdftex.def Info: imgs_exec/telcel.png  used on input line 100.
+(pdftex.def)             Requested size: 151.34557pt x 42.67912pt.
 
 Overfull \hbox (17.0pt too wide) in paragraph at lines 90--103
 []$[]$ 
@@ -792,40 +767,28 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 [1
 
 {C:/Users/lucas/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/luca
-s/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+s/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./imgs_exec/heade
+r-city-1.jpg> <./imgs_exec/telcel.png>]
 Overfull \hbox (17.0pt too wide) in paragraph at lines 153--175
 []$[]$ 
  []
 
-[1]
-No file rendered_report.toc.
+[1] (rendered_report.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 \tf@toc=\write4
 \openout4 = `rendered_report.toc'.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 179.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.179 \newpage
-              
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[2]
-Overfull \hbox (25.18538pt too wide) in paragraph at lines 190--232
- [][] 
- []
-
+<imgs_exec/logo.png, id=17, 513.92pt x 74.2775pt>
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 179.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
+ [2 <./imgs_exec/logo.png>]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/all_dcs_fig1.png' not found on input line 241.
+54g/figs/all_dcs_fig1.png' not found on input line 240.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -835,32 +798,26 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.241 ...5-vuz/h11-uhq-54g/figs/all_dcs_fig1.png}}
+l.240 ...5-vuz/h11-uhq-54g/figs/all_dcs_fig1.png}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 245.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.245 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+40.
+(C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 244.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 
 [3]
 ! Missing } inserted.
 <inserted text> 
                 }
-l.254     \end{itemize}
+l.253     \end{itemize}
                        
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -871,7 +828,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.254     \end{itemize}
+l.253     \end{itemize}
                        
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -879,30 +836,14 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-
-LaTeX Warning: Reference `sec:definiciones_utilizacion' on page 4 undefined on 
-input line 258.
-
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 259.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.259 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 258.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [4]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/all_dcs_cpu_storage_util_vs_reserve.png' not found on input line 265.
+54g/figs/all_dcs_cpu_storage_util_vs_reserve.png' not found on input line 264.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -913,14 +854,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.265 ...all_dcs_cpu_storage_util_vs_reserve.png}}
+l.264 ...all_dcs_cpu_storage_util_vs_reserve.png}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/all_dcs_mem_util_vs_reserve.png' not found on input line 271.
+54g/figs/all_dcs_mem_util_vs_reserve.png' not found on input line 270.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -931,30 +872,18 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.271 ...4g/figs/all_dcs_mem_util_vs_reserve.png}}
+l.270 ...4g/figs/all_dcs_mem_util_vs_reserve.png}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 404.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.404 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 421.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [5]
 ! Extra }, or forgotten \endgroup.
-l.420 ...o son utilizables para la carga de VNFs.}
+l.437 ...o son utilizables para la carga de VNFs.}
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -963,12 +892,8 @@ the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
 
-LaTeX Warning: Reference `fig:servers_per_dc' on page 6 undefined on input line
- 424.
-
-
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/all_dcs_fig5_servers_by_dc.png' not found on input line 428.
+54g/figs/all_dcs_fig5_servers_by_dc.png' not found on input line 445.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -979,31 +904,19 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.428 ...4g/figs/all_dcs_fig5_servers_by_dc.png}}}
+l.445 ...4g/figs/all_dcs_fig5_servers_by_dc.png}}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 432.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.432 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 449.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [6]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/all_dcs_fig2_by_dc.png' not found on input line 435.
+54g/figs/all_dcs_fig2_by_dc.png' not found on input line 452.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -1013,49 +926,24 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.435 ...11-uhq-54g/figs/all_dcs_fig2_by_dc.png}}}
+l.452 ...11-uhq-54g/figs/all_dcs_fig2_by_dc.png}}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 439.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.439 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 456.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [7]
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 450.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.450     \item \textbf
-                       {Utilización Efectiva:} Corresponde a la utilizació...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[8]
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 467.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
+ [8]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/all_dcs_fig3_normalized_by_dc.png' not found on input line 455.
+54g/figs/all_dcs_fig3_normalized_by_dc.png' not found on input line 472.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -1066,48 +954,24 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.455 ...figs/all_dcs_fig3_normalized_by_dc.png}}}
+l.472 ...figs/all_dcs_fig3_normalized_by_dc.png}}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 459.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.459 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 476.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [9]
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 514.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.514 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[10]
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 538.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
+ [10]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/all_dcs_dc_vnf_matrix.png' not found on input line 523.
+54g/figs/all_dcs_dc_vnf_matrix.png' not found on input line 547.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -1118,31 +982,19 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.523 ...-uhq-54g/figs/all_dcs_dc_vnf_matrix.png}}
+l.547 ...-uhq-54g/figs/all_dcs_dc_vnf_matrix.png}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 531.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.531 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 555.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [11]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/9_top_cpu.png' not found on input line 643.
+54g/figs/9_top_cpu.png' not found on input line 691.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -1152,31 +1004,19 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.643 ...-1n5-vuz/h11-uhq-54g/figs/9_top_cpu.png}}
+l.691 ...-1n5-vuz/h11-uhq-54g/figs/9_top_cpu.png}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 647.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.647 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 695.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [12]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/9_top_mem.png' not found on input line 687.
+54g/figs/9_top_mem.png' not found on input line 735.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -1186,31 +1026,19 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.687 ...-1n5-vuz/h11-uhq-54g/figs/9_top_mem.png}}
+l.735 ...-1n5-vuz/h11-uhq-54g/figs/9_top_mem.png}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 691.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.691 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 739.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [13]
 
 LaTeX Warning: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-
-54g/figs/9_top_disk.png' not found on input line 731.
+54g/figs/9_top_disk.png' not found on input line 779.
 
 
 ! Package pdftex.def Error: File `/usr/local/iquall/mat/shared/workflow/9yd-1n5
@@ -1220,105 +1048,36 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.731 ...1n5-vuz/h11-uhq-54g/figs/9_top_disk.png}}
+l.779 ...1n5-vuz/h11-uhq-54g/figs/9_top_disk.png}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 735.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.735 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 783.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
 [14]
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 774.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.774 \newpage
-              
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[15]
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 931.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.931     \item \textbf
-                       {Agregación Regional:} La Región 9 se define como l...
-
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[16]
-
-LaTeX Warning: Reference `sec:calculo_utilizacion_efectiva' on page 17 undefine
-d on input line 966.
-
-
-LaTeX Warning: Reference `sec:calculo_utilizacion_efectiva' on page 17 undefine
-d on input line 983.
-
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 985.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.985 ...ection{Cálculo de Utilización Efectiva}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[17]
-
-LaTeX Warning: File `imgs_exec/logo.png' not found on input line 1006.
-
-
-! Package pdftex.def Error: File `imgs_exec/logo.png' not found: using draft se
-tting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1006 \end{document}
-                     
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[18] (rendered_report.aux
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 822.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
+ [15]
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 979.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
+ [16]
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 1033.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
+ [17]
+File: imgs_exec/logo.png Graphic file (type png)
+<use imgs_exec/logo.png>
+Package pdftex.def Info: imgs_exec/logo.png  used on input line 1054.
+(pdftex.def)             Requested size: 157.49425pt x 22.76228pt.
+ [18] (rendered_report.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 )
@@ -1328,20 +1087,17 @@ L3 programming layer <2024-01-04>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 17573 strings out of 474486
- 367649 string characters out of 5743755
- 1942542 words of memory out of 5000000
- 39543 multiletter control sequences out of 15000+600000
- 594458 words of font info for 74 fonts, out of 8000000 for 9000
+ 17526 strings out of 474486
+ 365840 string characters out of 5743755
+ 1945542 words of memory out of 5000000
+ 39486 multiletter control sequences out of 15000+600000
+ 601215 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,87p,1049b,738s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,16n,87p,1049b,726s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\lucas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk> <C:\Users\lucas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\ectt1095.pk><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1353,9 +1109,9 @@ rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/lucas/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/lucas/App
 Data/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/lucas/
 AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on rendered_report.pdf (19 pages, 139947 bytes).
+Output written on rendered_report.pdf (19 pages, 1215806 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
+ 163 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

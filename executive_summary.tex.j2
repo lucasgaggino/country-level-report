@@ -109,7 +109,7 @@
     \begin{center}
         {\color{primary}\Huge \bfseries Reporte de Planificación de Capacidad}\par
         \vspace{0.35cm}
-        {\Large \bfseries Región \VAR{region} -- Estado de la Infraestructura y Visión General Estratégica}\par
+        {\Large \bfseries \VAR{country} -- Estado de la Infraestructura y Visión General Estratégica}\par
         \vspace{0.7cm}
         {\color{primary}\rule{0.75\linewidth}{0.6pt}}\par
     \end{center}
@@ -129,9 +129,9 @@
                   \textbf{Fecha:} \today \\[2pt]
                   \textbf{Rango Temporal: }%
                   \TemporalRangeDays{14} \\[2pt]
-                  \textbf{Alcance:} Región \VAR{region} \\[4pt]
+                  \textbf{Alcance:} País -- \VAR{country} \\[4pt]
                   \small
-                  \textbf{Data Centers:} \VAR{dc_list_str}
+                  \textbf{Regiones:} \VAR{region_list_str} \\[4pt]
                   \textbf{Document Version:} 0.2 - Draft \\[4pt]
                 \end{minipage}
             };
@@ -179,41 +179,46 @@ Toda la información contenida en este reporte es provisoria y se encuentra en p
 \newpage
 
 % --- Content Starts Here ---
-\section{Visión General de la Región}
+\section{Visión General del País}
 
-Este reporte se enfoca exclusivamente en la infraestructura del \textbf{vendor Ericsson} dentro de los Data Centers de la \textbf{Región \VAR{region}}. La siguiente tabla proporciona un resumen de alto nivel del alcance considerado, detallando el número total de clusters, servidores físicos y máquinas virtuales desplegadas en cada Data Center.
+Este reporte se enfoca en la infraestructura del \textbf{vendor Ericsson} desplegada a lo largo de los Data Centers de \textbf{\VAR{country}}, abarcando las \textbf{Regiones \VAR{region_list_str}}. La siguiente tabla proporciona un resumen de alto nivel del alcance considerado, detallando el número total de clusters, servidores físicos y máquinas virtuales desplegadas en cada Data Center.
 
 \begin{table}[H]
 \centering
-\caption{Resumen de Data Centers -- Región \VAR{region}}
+\caption{Resumen de Data Centers -- \VAR{country}}
 \label{tab:overview}
-\begin{tabular}{@{}lccccc@{}}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}clrrrrr@{}}
 \toprule
-\textbf{Data Center} & \textbf{Clusters} & \textbf{Servidores Totales} & \textbf{Servidores Spare} & \textbf{Tipos de VNF} & \textbf{VMs} \\
+\textbf{Región} & \textbf{Data Center} & \textbf{Clusters} & \textbf{Serv. Totales} & \textbf{Serv. Spare} & \textbf{Tipos VNF} & \textbf{VMs} \\
 \midrule
     \BLOCK{ for overview in overview_list }
+        \VAR{overview.region} &
         \VAR{overview.dc} &
         \VAR{overview.clusters} &
         \VAR{overview.total_servers} &
         \VAR{overview.spare_servers} (\VAR{overview.spare_pct}\%) &
         \VAR{overview.vnf_types} &
         \VAR{overview.vms} \\
-    \BLOCK{ endfor }
+        \BLOCK{ if overview.region_last }
 \midrule
-    \textbf{\VAR{total_overview.dc}} &
+        \BLOCK{ endif }
+    \BLOCK{ endfor }
+    \multicolumn{2}{l}{\textbf{\VAR{total_overview.dc}}} &
     \textbf{\VAR{total_overview.clusters}} &
     \textbf{\VAR{total_overview.total_servers}} &
     \textbf{\VAR{total_overview.spare_servers} (\VAR{total_overview.spare_pct}\%)} &
     \textbf{\VAR{total_overview.vnf_types}} &
     \textbf{\VAR{total_overview.vms}} \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}
 
 
-\section{Análisis de Capacidad de la Región}
+\section{Análisis de Capacidad del País}
 
-La siguiente figura presenta el resumen global de los recursos de la \textbf{Región \VAR{region}} (vCPU, Memoria y Disco), desglosando la capacidad total en categorías de reservado, sistema, libre, fragmentación (vCPU) y spare.
+La siguiente figura presenta el resumen global de los recursos de \textbf{\VAR{country}} (vCPU, Memoria y Disco), consolidando todos los Data Centers a nivel nacional y desglosando la capacidad total en categorías de reservado, sistema, libre, fragmentación (vCPU) y spare.
 
 \begin{figure}[H]
     \centering
@@ -234,7 +239,7 @@ La siguiente figura presenta el resumen global de los recursos de la \textbf{Reg
 
 \subsection{Matriz de Utilización Efectiva vs Reserva Efectiva}
 
-La siguiente matriz presenta una vista comparativa de la \textbf{utilización efectiva} y la \textbf{reserva efectiva} de la \textbf{Región \VAR{region}}. Para las definiciones formales de estos términos y del escenario de \textbf{failover}, consultar el Anexo (\ref{sec:definiciones_utilizacion}).
+La siguiente matriz presenta una vista comparativa de la \textbf{utilización efectiva} y la \textbf{reserva efectiva} a nivel nacional (\textbf{\VAR{country}}). Para las definiciones formales de estos términos y del escenario de \textbf{failover}, consultar el Anexo (\ref{sec:definiciones_utilizacion}).
 
 \begin{figure}[H]
 \centering
@@ -252,24 +257,24 @@ La siguiente matriz presenta una vista comparativa de la \textbf{utilización ef
     {\small \textbf{RAM}}
 \end{minipage}
 
-\caption{Utilización Efectiva vs Reserva Efectiva de la Región}
-\label{fig:region\VAR{region}_effective_capacity}
+\caption{Utilización Efectiva vs Reserva Efectiva del País}
+\label{fig:country_effective_capacity}
 \end{figure}
 
 
 
 \begin{table}[H]
 \centering
-\caption{Métricas de Reserva y Utilización Efectiva Disponible de la Región \VAR{region} (Respecto a la Capacidad Neta)}
-\label{tab:region\VAR{region}_matrix_values}
+\caption{Métricas de Reserva y Utilización Efectiva por Región (Respecto a la Capacidad Neta)}
+\label{tab:country_matrix_values}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}l|ccc|ccc|ccc@{}}
 \toprule
 & \multicolumn{3}{c|}{\textbf{CPU}} & \multicolumn{3}{c|}{\textbf{Memoria}} & \multicolumn{3}{c}{\textbf{Disco Local}} \\
-\textbf{Data Center} & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) \\
+\textbf{Región} & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) \\
 \midrule
     \BLOCK{ for metric in region_metrics }
-        \VAR{metric.datacenter} &
+        Región \VAR{metric.region} &
         \VAR{metric.cap_neta_cpu} vCPU &
         \VAR{metric.efect_resv_cpu_pct | fmt_num} &
         \VAR{metric.efect_util_cpu | fmt_num} &
@@ -281,16 +286,16 @@ La siguiente matriz presenta una vista comparativa de la \textbf{utilización ef
         \VAR{metric.efect_util_disk_pct | fmt_num} \\
     \BLOCK{ endfor }
 \midrule
-    \textbf{Total Region \VAR{region}} &
-    \textbf{\VAR{total_region_metric.cap_neta_cpu} vCPU} &
-    \textbf{\VAR{total_region_metric.efect_resv_cpu_pct | fmt_num}} &
-    \textbf{\VAR{total_region_metric.efect_util_cpu | fmt_num}} &
-    \textbf{\VAR{ (total_region_metric.cap_neta_mem / 1000) | fmt_num } TB} &
-    \textbf{\VAR{total_region_metric.efect_resv_mem_pct | fmt_num}} &
-    \textbf{\VAR{total_region_metric.efect_util_mem | fmt_num}} &
-    \textbf{\VAR{ (total_region_metric.cap_neta_disk / 1000) | fmt_num } TB} &
-    \textbf{\VAR{total_region_metric.efect_resv_disk_pct | fmt_num}} &
-    \textbf{\VAR{total_region_metric.efect_util_disk_pct | fmt_num}} \\
+    \textbf{Total País} &
+    \textbf{\VAR{total_country_metric.cap_neta_cpu} vCPU} &
+    \textbf{\VAR{total_country_metric.efect_resv_cpu_pct | fmt_num}} &
+    \textbf{\VAR{total_country_metric.efect_util_cpu | fmt_num}} &
+    \textbf{\VAR{ (total_country_metric.cap_neta_mem / 1000) | fmt_num } TB} &
+    \textbf{\VAR{total_country_metric.efect_resv_mem_pct | fmt_num}} &
+    \textbf{\VAR{total_country_metric.efect_util_mem | fmt_num}} &
+    \textbf{\VAR{ (total_country_metric.cap_neta_disk / 1000) | fmt_num } TB} &
+    \textbf{\VAR{total_country_metric.efect_resv_disk_pct | fmt_num}} &
+    \textbf{\VAR{total_country_metric.efect_util_disk_pct | fmt_num}} \\
 \bottomrule
 \end{tabular}%
 }
@@ -306,25 +311,25 @@ La siguiente matriz presenta una vista comparativa de la \textbf{utilización ef
 \end{itemize}
 
 
-\noindent La siguiente tabla resume la capacidad y el nivel de utilización del almacenamiento compartido (NAS) disponible para la Región.
+\noindent La siguiente tabla resume la capacidad y el nivel de utilización del almacenamiento compartido (NAS) disponible a nivel nacional, agrupado por región.
 
 \begin{table}[H]
 \centering
-\caption{Almacenamiento Compartido (NAS) por Data Center}
+\caption{Almacenamiento Compartido (NAS) por Región}
 \label{tab:nas_storage}
 \resizebox{0.8\textwidth}{!}{%
 \begin{tabular}{@{}lccc@{}}
 \toprule
-\textbf{Data Center} & \textbf{Capacidad Total} & \textbf{Utilización} & \textbf{Utilización (\%)} \\
+\textbf{Región} & \textbf{Capacidad Total} & \textbf{Utilización} & \textbf{Utilización (\%)} \\
 \midrule
     \BLOCK{ for storage in nas_storages }
-        \VAR{storage.datacenter} &
+        Región \VAR{storage.region} &
         \VAR{storage.capacity_total_tib | fmt_num} TB &
         \VAR{storage.capacity_used_tib | fmt_num} TB &
         \VAR{storage.capacity_used_pct | fmt_num} \\
     \BLOCK{ endfor }
 \midrule
-    \textbf{Total Region \VAR{region}} &
+    \textbf{Total País} &
     \textbf{\VAR{total_nas_storage.capacity_total_tib | fmt_num} TB} &
     \textbf{\VAR{total_nas_storage.capacity_used_tib | fmt_num} TB} &
     \textbf{\VAR{total_nas_storage.capacity_used_pct | fmt_num}} \\
@@ -336,12 +341,12 @@ La siguiente matriz presenta una vista comparativa de la \textbf{utilización ef
 
 
 
-\section{Análisis de Recursos por Data Center}
+\section{Análisis de Recursos por Región}
 
 
 \subsection{Desglose de Recursos}
 
-Esta sección presenta el desglose detallado de la capacidad por \textbf{Data Center} dentro de la Región \VAR{region} para CPU, Memoria y Disco. La visualización descompone la capacidad total de cada DC en cinco categorías clave:
+Esta sección presenta el desglose detallado de la capacidad por \textbf{Región} a nivel nacional para CPU, Memoria y Disco. La visualización descompone la capacidad total de cada región en cinco categorías clave:
 
 \begin{itemize}
     \setlength\itemsep{0em}
@@ -352,20 +357,20 @@ Esta sección presenta el desglose detallado de la capacidad por \textbf{Data Ce
     \item \textbf{Spare:} Capacidad asociada a servidores designados para failover. Se utiliza el criterio de considerar \textit{Spare} a todo servidor que no tenga ninguna VM instanciada.
 \end{itemize}
 
-A su vez, en la figura \ref{fig:servers_per_dc} se detalla la cantidad de servidores por Data Center indicando si los mismos son activos (contienen VMs en uso) o spare.
+A su vez, en la figura \ref{fig:servers_per_region} se detalla la cantidad de servidores por región indicando si los mismos son activos (contienen VMs en uso) o spare.
 
 \begin{figure}[H]
 \centering
 \makebox[\textwidth][c]{\includegraphics[width=0.9\textwidth]{\detokenize{\VAR{fig5_path}}}}
-\caption{Cantidad de Servidores por Data Center: Activo / Spare}
-\label{fig:servers_per_dc}
+\caption{Cantidad de Servidores por Región: Activo / Spare}
+\label{fig:servers_per_region}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{\detokenize{\VAR{fig2_path}}}}
-\caption{Desglose de Capacidad por Data Center: Sistema, Spare, Fragmentación, Reservado y Libre}
-\label{fig:dc_usage_rsc}
+\caption{Desglose de Capacidad por Región: Sistema, Spare, Fragmentación, Reservado y Libre}
+\label{fig:region_usage_rsc}
 \end{figure}
 
 
@@ -373,29 +378,29 @@ A su vez, en la figura \ref{fig:servers_per_dc} se detalla la cantidad de servid
 
 \subsection{Utilización de Recursos}
 
-Esta sección analiza la utilización de los recursos dentro de los Data Centers de la Región \VAR{region}, diferenciando entre la carga operativa local y la carga proyectada ante escenarios de contingencia. Se definen dos métricas clave para este análisis:
+Esta sección analiza la utilización de los recursos por región a nivel nacional, diferenciando entre la carga operativa local y la carga proyectada ante escenarios de contingencia. Se definen dos métricas clave para este análisis:
 
 \begin{itemize}
     \setlength\itemsep{0em}
     \item \textbf{Utilización Local:} Representa el consumo de recursos de las VMs en relación con los cores asignados. Para CPU y Memoria, se calcula tomando el percentil 95 (P95) de la utilización agrupada por hora en una ventana de 14 días. Para el Disco, se considera únicamente la última muestra de utilización disponible.
-    \item \textbf{Utilización Efectiva:} Corresponde a la utilización local más la carga adicional estimada que el Data Center debería absorber en un escenario de failover. Este cálculo considera la caída de un Data Center redundante y la redistribución de tráfico hacia la Región, según las políticas de redundancia definidas para cada VNF.
+    \item \textbf{Utilización Efectiva:} Corresponde a la utilización local más la carga adicional estimada que la región debería absorber en un escenario de failover. Este cálculo considera la caída de un Data Center redundante y la redistribución de tráfico, según las políticas de redundancia definidas para cada VNF.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{\detokenize{\VAR{fig3_path}}}}
-    \caption{Porcentaje de Utilización por Data Center: Local vs Efectiva (CPU, Memoria y Disco)}
-    \label{fig:dc_usage_effective}
+    \caption{Porcentaje de Utilización por Región: Local vs Efectiva (CPU, Memoria y Disco)}
+    \label{fig:region_usage_effective}
 \end{figure}
 
 \begin{table}[H]
 \centering
-\caption{Utilización Efectiva y Local Agregada de VMs por Data Center. \protect\\ \small{\textit{Representa la carga consolidada de todas las VMs alojadas en cada DC.}}}
-\label{tab:dc_utilization}
+\caption{Utilización Efectiva y Local Agregada de VMs por Región. \protect\\ \small{\textit{Representa la carga consolidada de todas las VMs alojadas en cada región.}}}
+\label{tab:region_utilization}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Data Center} &
+\textbf{Región} &
 \textbf{Util. Efect. CPU (\%)} &
 \textbf{Util. Efect. MEM (\%)} &
 \textbf{Util. Local CPU (\%)} &
@@ -403,7 +408,7 @@ Esta sección analiza la utilización de los recursos dentro de los Data Centers
 \textbf{Util. Disk (\%)} \\
 \midrule
     \BLOCK{ for vm_util in vm_utilization }
-        \VAR{vm_util.datacenter} &
+        Región \VAR{vm_util.region} &
         \VAR{vm_util.efect_util_cpu | fmt_num} &
         \VAR{vm_util.efect_util_mem | fmt_num} &
         \VAR{vm_util.cpu_p95_pct | fmt_num} &
@@ -411,11 +416,11 @@ Esta sección analiza la utilización de los recursos dentro de los Data Centers
         \VAR{vm_util.efect_util_disk_pct | fmt_num} \\
     \BLOCK{ endfor }
 \midrule
-    \textbf{Promedio Region \VAR{region}} &
+    \textbf{Promedio País} &
     \textbf{\VAR{avg_vm_utilization.efect_util_cpu | fmt_num}} &
     \textbf{\VAR{avg_vm_utilization.efect_util_mem | fmt_num}} &
-    \textbf{\VAR{avg_vm_utilization.cpu_p95_pct | fmt_num}} &
-    \textbf{\VAR{avg_vm_utilization.mem_p95_pct | fmt_num}} &
+    \textbf{N/A} &
+    \textbf{N/A} &
     \textbf{\VAR{avg_vm_utilization.efect_util_disk_pct | fmt_num}} \\
 \bottomrule
 \end{tabular}%
@@ -424,33 +429,34 @@ Esta sección analiza la utilización de los recursos dentro de los Data Centers
 
 
 
-\subsection{Distribución de VNFs por Data Center}
+\subsection{Distribución de VNFs por Región}
 
-Esta sección presenta la distribución de \textbf{tipos de VNF} en los distintos Data Centers de la Región \VAR{region}. La visualización permite identificar la concentración y dispersión del despliegue de VNFs a nivel regional, facilitando el análisis de balanceo de carga entre sitios.
+Esta sección presenta la distribución de \textbf{tipos de VNF} en las distintas regiones de \VAR{country}. La visualización permite identificar la concentración y dispersión del despliegue de VNFs a nivel nacional, facilitando el análisis de balanceo de carga entre regiones.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{\detokenize{\VAR{fig_vnf_dc_distribution}}}
-    \caption{Distribución de VNFs por Data Center: Región \VAR{region}}
-    \label{fig:vnf_dc_distribution}
+    \caption{Distribución de VNFs por Región: \VAR{country}}
+    \label{fig:vnf_region_distribution}
 \end{figure}
 
 \section{Análisis de Carga por Instancia de VNF}
 
-La siguiente tabla presenta un resumen de la carga por \textbf{Instacia de VNF}, destacando los valores más altos y más bajos de utilización de CPU (P95) dentro del periodo analizado, con el objetivo de apoyar la priorización de revisión y ajuste de capacidad.
+La siguiente tabla presenta un resumen de la carga por \textbf{Instancia de VNF}, destacando los valores más altos de utilización de CPU (P95) dentro del periodo analizado a nivel nacional, con el objetivo de apoyar la priorización de revisión y ajuste de capacidad.
 
 
 \begin{table}[H]
 \centering
-\caption{Top 10 VNFs por Utilización de CPU (P95)}
-\label{tab:top10_vnf_region}
+\caption{Top 15 VNFs por Utilización de CPU (P95)}
+\label{tab:top15_vnf_country}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}llrrrrr@{}}
+\begin{tabular}{@{}cllrrrrr@{}}
 \toprule
-Instancia de VNF & Data Center & Utilizacion Local CPU & CPU Efec. & Utilizacion Local RAM & RAM Efec. & Disco \\
- & & (\%) & (\%) & (\%) & (\%) & (\%) \\
+Región & Instancia de VNF & Data Center & Utilizacion Local CPU & CPU Efec. & Utilizacion Local RAM & RAM Efec. & Disco \\
+ & & & (\%) & (\%) & (\%) & (\%) & (\%) \\
 \midrule
-    \BLOCK{ for vnf in top10_vnf_cpu_p95_region }
+    \BLOCK{ for vnf in top15_vnf_cpu_p95_country }
+        \VAR{vnf.region} &
         \VAR{vnf.name} &
         \VAR{vnf.datacenter} &
         \VAR{vnf.cpu_p95 | fmt_num} &

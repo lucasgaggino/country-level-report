@@ -1,11 +1,11 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {section}{\numberline {1}Visión General de la Región}{3}{}%
-\contentsline {section}{\numberline {2}Análisis de Capacidad de la Región}{3}{}%
+\contentsline {section}{\numberline {1}Visión General del País}{3}{}%
+\contentsline {section}{\numberline {2}Análisis de Capacidad del País}{3}{}%
 \contentsline {subsection}{\numberline {2.1}Matriz de Utilización Efectiva vs Reserva Efectiva}{5}{}%
-\contentsline {section}{\numberline {3}Análisis de Recursos por Data Center}{6}{}%
+\contentsline {section}{\numberline {3}Análisis de Recursos por Región}{6}{}%
 \contentsline {subsection}{\numberline {3.1}Desglose de Recursos}{6}{}%
 \contentsline {subsection}{\numberline {3.2}Utilización de Recursos}{8}{}%
-\contentsline {subsection}{\numberline {3.3}Distribución de VNFs por Data Center}{11}{}%
+\contentsline {subsection}{\numberline {3.3}Distribución de VNFs por Región}{11}{}%
 \contentsline {section}{\numberline {4}Análisis de Carga por Instancia de VNF}{12}{}%
 \contentsline {section}{\numberline {5}Oportunidades de Mejora}{12}{}%
 \contentsline {section}{\numberline {A}Anexo: Metodología de Cálculo}{16}{}%
