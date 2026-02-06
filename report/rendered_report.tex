@@ -1,0 +1,1025 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage[spanish,es-tabla]{babel}
+
+% Colors
+\definecolor{primary}{RGB}{0, 47, 135}
+\definecolor{secondary}{RGB}{204, 0, 0}
+\definecolor{accent}{RGB}{240, 240, 240}
+\definecolor{purple_iquall}{RGB}{40, 27, 47}
+
+
+\usepackage{tikz}
+
+% Iquall color palette (approx.)
+\definecolor{iquallPurple}{HTML}{6B1F83}
+\definecolor{iquallMagenta}{HTML}{E23B8E}
+\definecolor{iquallBg}{HTML}{F7F3FB}
+
+% Fonts
+\renewcommand{\familydefault}{\sfdefault}
+
+% Fix for headheight warning
+\setlength{\headheight}{33pt}
+
+% Header and Footer
+\pagestyle{fancy}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=0.8cm]{imgs_exec/logo.png}} 
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\small \today}
+
+% Section styling
+\titleformat{\section}
+{\color{primary}\Large\bfseries}
+{\thesection}{1em}{}[\titlerule]
+
+\titleformat{\subsection}
+{\color{primary}\large\bfseries}
+{\thesubsection}{1em}{}
+
+\usepackage{datetime}
+\usepackage{advdate}
+
+\makeatletter
+\newcommand{\TemporalRangeDays}[1]{%
+  \begingroup
+    \AdvanceDate[-#1]%
+    \the\day\ de \ifcase\month\or enero\or febrero\or marzo\or abril\or mayo\or junio\or julio\or agosto\or septiembre\or octubre\or noviembre\or diciembre\fi\ de \the\year\space-\\[0pt]
+    \AdvanceDate[#1]%
+    \the\day\ de \ifcase\month\or enero\or febrero\or marzo\or abril\or mayo\or junio\or julio\or agosto\or septiembre\or octubre\or noviembre\or diciembre\fi\ de \the\year
+  \endgroup
+}
+\makeatother
+
+
+
+\begin{document}
+
+
+% --- Cover Page ---
+\begin{titlepage}
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture,overlay]
+        % Header image band
+        \node[anchor=north west, inner sep=0pt] at (current page.north west)
+            {\includegraphics[width=\paperwidth,height=7.2cm]{imgs_exec/header-city-1.jpg}};
+        % Footer band (Iquall accent)
+        \fill[purple_iquall] (current page.south west) rectangle ([yshift=1.35cm]current page.south east);
+        \fill[purple_iquall] (current page.south west) rectangle ([yshift=1.50cm]current page.south east);
+    \end{tikzpicture}
+
+    \vspace*{-0.2cm}
+    % Header content (logos)
+    \noindent
+    
+    \begin{minipage}{\textwidth}
+        % Iquall logo: top-right (same size)
+
+        \vspace*{1cm}
+        %\begin{flushright}
+        %    \includegraphics[height=1.25cm, keepaspectratio]{imgs_exec/logo.png}
+        %\end{flushright}
+        % Telcel logo: centered, slightly lower, 10% larger than Iquall
+        \vspace{4.50cm}
+        \begin{center}
+            \includegraphics[height=1.5cm, keepaspectratio]{imgs_exec/telcel.png}
+        \end{center}
+    \end{minipage}
+
+    % Flexible spacing to vertically center the cover content between header and footer bands
+    \vspace{1.2cm}
+    \vfill
+
+    % Main title block
+    \begin{center}
+        {\color{primary}\Huge \bfseries Reporte de Planificación de Capacidad}\par
+        \vspace{0.35cm}
+        {\Large \bfseries México -- Estado de la Infraestructura y Visión General Estratégica}\par
+        \vspace{0.7cm}
+        {\color{primary}\rule{0.75\linewidth}{0.6pt}}\par
+    \end{center}
+
+    \vspace{0.9cm}
+
+    % Info box
+    \begin{flushright}
+        \begin{tikzpicture}
+            \node[
+                fill=accent,
+                rounded corners=6pt,
+                inner sep=10pt
+            ] {
+                \begin{minipage}{0.8\textwidth}
+                  \raggedleft
+                  \textbf{Fecha:} \today \\[2pt]
+                  \textbf{Rango Temporal: }%
+                  \TemporalRangeDays{14} \\[2pt]
+                  \textbf{Alcance:} País -- México \\[4pt]
+                  \small
+                  \textbf{Regiones:} 1, 2, 3, 4, 6, 9 \\[4pt]
+                  \textbf{Document Version:} 0.2 - Draft \\[4pt]
+                \end{minipage}
+            };
+        \end{tikzpicture}
+    \end{flushright}
+
+    \vfill
+    \vspace{0.35cm}
+
+    \begin{center}
+        {\small \textit{Preparado para Telcel por Iquall Networks}}
+    \end{center}
+\end{titlepage}
+
+% --- Disclaimer Page ---
+\newpage
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{minipage}{\textwidth}
+\centering
+\rule{\textwidth}{0.4pt} \\
+\vspace{0.3cm}
+\textbf{CONFIDENCIAL} \\
+Este documento contiene información propietaria perteneciente a Iquall Networks. \\
+Su distribución o reproducción no autorizada está estrictamente prohibida. \\
+
+\vspace{0.5cm}
+
+\textbf{DESCARGO DE RESPONSABILIDAD} \\
+Este análisis se basa en datos recopilados durante el período de tiempo especificado y representa una instantánea del rendimiento del sistema en ese momento. Los resultados y recomendaciones pueden variar según cambios en el sistema, patrones de carga o modificaciones en la infraestructura. \\
+
+
+\vspace{0.5cm}
+\textbf{CONTENIDO PRELIMINAR} \\
+Toda la información contenida en este reporte es provisoria y se encuentra en proceso de trabajo. \\
+
+
+\vspace{0.3cm}
+\rule{\textwidth}{0.4pt}
+\end{minipage}
+\newpage
+
+% --- Table of Contents ---
+\tableofcontents
+\newpage
+
+% --- Content Starts Here ---
+\section{Visión General del País}
+
+Este reporte se enfoca en la infraestructura del \textbf{vendor Ericsson} desplegada a lo largo de los Data Centers de \textbf{México}, abarcando las \textbf{Regiones 1, 2, 3, 4, 6 y 9}. La siguiente tabla proporciona un resumen de alto nivel del alcance considerado, detallando el número total de clusters, servidores físicos y máquinas virtuales desplegadas en cada Data Center.
+
+\begin{table}[H]
+\centering
+\caption{Resumen de Data Centers -- México}
+\label{tab:overview}
+\small
+\begin{tabular}{@{}clccccccc@{}}
+\toprule
+\textbf{Región} & \textbf{Data Center} & \textbf{Vendor} & \textbf{Clusters} & \textbf{Servidores Totales} & \textbf{Servidores Spare} & \textbf{Tipos de VNF} & \textbf{VMs} \\
+\midrule
+    1 & Arbol & Ericsson &
+        6 & 120 & 45 (37.50\%) & 10 & 280 \\
+    1 & Lomas & Ericsson &
+        8 & 150 & 55 (36.67\%) & 12 & 340 \\
+\midrule
+    2 & Obregon & Ericsson &
+        7 & 130 & 48 (36.92\%) & 9 & 290 \\
+    2 & Yañez & Ericsson &
+        5 & 98 & 38 (38.78\%) & 7 & 210 \\
+\midrule
+    3 & Copernico & Ericsson &
+        9 & 170 & 65 (38.24\%) & 11 & 380 \\
+    3 & Fuentes & Ericsson &
+        6 & 110 & 42 (38.18\%) & 8 & 245 \\
+    3 & Zarco & Ericsson &
+        5 & 95 & 36 (37.89\%) & 7 & 200 \\
+\midrule
+    4 & Madero & Ericsson &
+        10 & 190 & 72 (37.89\%) & 14 & 420 \\
+    4 & Mayo & Ericsson &
+        7 & 135 & 50 (37.04\%) & 9 & 310 \\
+    4 & Revolución Nacional & Ericsson &
+        8 & 155 & 58 (37.42\%) & 11 & 350 \\
+    4 & Revolución Regional & Ericsson &
+        11 & 210 & 78 (37.14\%) & 15 & 460 \\
+    4 & Triara Monterrey & Ericsson &
+        9 & 175 & 66 (37.71\%) & 12 & 390 \\
+\midrule
+    6 & Aztecas & Ericsson &
+        7 & 140 & 52 (37.14\%) & 10 & 300 \\
+    6 & Corregidora & Ericsson &
+        8 & 160 & 60 (37.50\%) & 11 & 360 \\
+    6 & Manzanares & Ericsson &
+        6 & 115 & 43 (37.39\%) & 8 & 260 \\
+    6 & Obrera & Ericsson &
+        9 & 180 & 68 (37.78\%) & 13 & 400 \\
+\midrule
+    9 & Morales & Ericsson &
+        7 & 130 & 50 (38.46\%) & 9 & 285 \\
+    9 & Nextengo Nacional & Ericsson &
+        8 & 100 & 74 (74.00\%) & 8 & 250 \\
+    9 & Nextengo Regional & Ericsson &
+        13 & 246 & 87 (35.37\%) & 18 & 473 \\
+    9 & Popotla & Ericsson &
+        10 & 214 & 113 (52.80\%) & 6 & 221 \\
+    9 & San Juan & Ericsson &
+        13 & 246 & 88 (35.77\%) & 17 & 455 \\
+\midrule
+    \multicolumn{2}{l}{\textbf{Total}} & &
+    \textbf{172} &
+    \textbf{3269} &
+    \textbf{1288 (39.40\%)} &
+    \textbf{32} &
+    \textbf{6879} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Análisis de Capacidad de la Región}
+
+La siguiente figura presenta el resumen global de los recursos de la \textbf{Región 9} (vCPU, Memoria y Disco), desglosando la capacidad total en categorías de reservado, sistema, libre, fragmentación (vCPU) y spare.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.99\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/all_dcs_fig1.png}}
+    \caption{Resumen Global de Capacidad: vCPU, Memoria y Disco}
+    \label{fig:spare_dist}
+    \end{figure}
+
+    \noindent \small{\textbf{Notas:}}
+    \begin{itemize}
+        \setlength\itemsep{0em}
+        \item \small{\textit{Reservado:} Recursos efectivamente comprometidos o en uso por las máquinas virtuales desplegadas.
+        \item \small{\textit{Fragmentación:} Ocurre cuando los recursos remanentes en un servidor, tras la asignación de VMs, son insuficientes para alojar nuevas instancias operativas. En el contexto de este reporte, se contabilizan como pérdida por fragmentación aquellos servidores que presentan 4 o menos vCPUs libres, 4 GB o menos de memoria libre, o 10 GB o menos de disco libre.}
+        \item \small{\textit{Libre:} Representa la porción de recursos (CPU, RAM, Disco) que se encuentra efectivamente disponible para ser asignada a nuevas VNFs o cargas de trabajo.}
+        \item \small{\textit{Sistema:} Corresponde a los recursos reservados para el funcionamiento del sistema operativo del servidor y la capa de virtualización. Estos recursos no son utilizables para la carga de VNFs.}
+        \item \small{\textit{Spare:} Se utiliza el criterio de considerar \textit{Spare} a todo servidor que no tenga ninguna VM instanciada.
+    \end{itemize}
+
+\subsection{Matriz de Utilización Efectiva vs Reserva Efectiva}
+
+La siguiente matriz presenta una vista comparativa de la \textbf{utilización efectiva} y la \textbf{reserva efectiva} de la \textbf{Región 9}. Para las definiciones formales de estos términos y del escenario de \textbf{failover}, consultar el Anexo (\ref{sec:definiciones_utilizacion}).
+
+\begin{figure}[H]
+\centering
+
+\begin{minipage}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/all_dcs_cpu_storage_util_vs_reserve.png}}
+    \vspace{2mm}
+    {\small \textbf{CPU - STORAGE}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/all_dcs_mem_util_vs_reserve.png}}
+    \vspace{2mm}
+    {\small \textbf{RAM}}
+\end{minipage}
+
+\caption{Utilización Efectiva vs Reserva Efectiva de la Región}
+\label{fig:region9_effective_capacity}
+\end{figure}
+
+
+
+\begin{table}[H]
+\centering
+\caption{Métricas de Reserva y Utilización Efectiva Disponible de la Región 9 (Respecto a la Capacidad Neta)}
+\label{tab:region9_matrix_values}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l|ccc|ccc|ccc@{}}
+\toprule
+& \multicolumn{3}{c|}{\textbf{CPU}} & \multicolumn{3}{c|}{\textbf{Memoria}} & \multicolumn{3}{c}{\textbf{Disco Local}} \\
+\textbf{Data Center} & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) & Cap. Neta & Res. Ef. (\%) & Util. Ef. (\%) \\
+\midrule
+    
+        Nextengo Nacional &
+        1768 vCPU &
+        80.00 &
+        38.81 &
+        9.74 TB &
+        40.24 &
+        62.98 &
+        44.56 TB &
+        63.83 &
+        78.43 \\
+    
+        Nextengo Regional &
+        11172 vCPU &
+        88.06 &
+        58.65 &
+        56.97 TB &
+        45.18 &
+        60.27 &
+        271.61 TB &
+        16.11 &
+        61.95 \\
+    
+        San Juan &
+        11036 vCPU &
+        88.71 &
+        73.63 &
+        56.21 TB &
+        46.08 &
+        62.16 &
+        268.65 TB &
+        16.38 &
+        67.09 \\
+    
+        Popotla &
+        7452 vCPU &
+        90.19 &
+        37.04 &
+        31.62 TB &
+        45.06 &
+        19.19 &
+        162.46 TB &
+        8.14 &
+        53.88 \\
+    
+\midrule
+    \textbf{Total Region 9} &
+    \textbf{31428 vCPU} &
+    \textbf{88.34} &
+    \textbf{57.69} &
+    \textbf{154.54 TB} &
+    \textbf{45.17} &
+    \textbf{52.74} &
+    \textbf{747.28 TB} &
+    \textbf{17.32} &
+    \textbf{67.90} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\textbf{Interpretacion de la matriz:} el eje X representa la \textbf{utilización efectiva} y el eje Y la \textbf{reserva efectiva}. La lectura se organiza en cuatro cuadrantes:
+\begin{itemize}
+    \item \textbf{Oportunidades de Optimización:} baja utilización efectiva con alta reserva efectiva.
+    \item \textbf{Uso eficiente de Reserva / Capacidad de Crecimiento Limitado:} alta utilización efectiva con alta reserva efectiva.
+    \item \textbf{Disponibilidad de Infraestructura:} baja utilización efectiva con baja reserva efectiva.
+    \item \textbf{Oportunidad de mejoras Operacionales:} alta utilización efectiva con baja reserva efectiva.
+\end{itemize}
+
+
+\noindent La siguiente tabla resume la capacidad y el nivel de utilización del almacenamiento compartido (NAS) disponible para la Región.
+
+\begin{table}[H]
+\centering
+\caption{Almacenamiento Compartido (NAS) por Data Center}
+\label{tab:nas_storage}
+\resizebox{0.8\textwidth}{!}{%
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Data Center} & \textbf{Capacidad Total} & \textbf{Utilización} & \textbf{Utilización (\%)} \\
+\midrule
+    
+        Nextengo Regional &
+        49.16 TB &
+        1.98 TB &
+        4.03 \\
+    
+        San Juan &
+        49.16 TB &
+        2.05 TB &
+        4.17 \\
+    
+        Popotla &
+        44.84 TB &
+        0.03 TB &
+        0.07 \\
+    
+        Nextengo Nacional &
+        49.16 TB &
+        25.65 TB &
+        52.18 \\
+    
+\midrule
+    \textbf{Total Region 9} &
+    \textbf{192.32 TB} &
+    \textbf{29.71 TB} &
+    \textbf{15.45} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
+
+\section{Análisis de Recursos por Data Center}
+
+
+\subsection{Desglose de Recursos}
+
+Esta sección presenta el desglose detallado de la capacidad por \textbf{Data Center} dentro de la Región 9 para CPU, Memoria y Disco. La visualización descompone la capacidad total de cada DC en cinco categorías clave:
+
+\begin{itemize}
+    \setlength\itemsep{0em}
+    \item \textbf{Reservado:} Recursos efectivamente comprometidos o en uso por las máquinas virtuales desplegadas.
+    \item \textbf{Fragmentación:} Recursos remanentes en servidores productivos que, por ser insuficientes, no pueden alojar nuevas instancias de VMs estándar.
+    \item \textbf{Libre:} Capacidad remanente en los servidores activos, efectivamente disponible para el despliegue inmediato de nuevas máquinas virtuales.
+    \item \textbf{Sistema:} Corresponde a los recursos reservados para el funcionamiento del sistema operativo del servidor y la capa de virtualización. Estos recursos no son utilizables para la carga de VNFs.}
+    \item \textbf{Spare:} Capacidad asociada a servidores designados para failover. Se utiliza el criterio de considerar \textit{Spare} a todo servidor que no tenga ninguna VM instanciada.
+\end{itemize}
+
+A su vez, en la figura \ref{fig:servers_per_dc} se detalla la cantidad de servidores por Data Center indicando si los mismos son activos (contienen VMs en uso) o spare.
+
+\begin{figure}[H]
+\centering
+\makebox[\textwidth][c]{\includegraphics[width=0.9\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/all_dcs_fig5_servers_by_dc.png}}}
+\caption{Cantidad de Servidores por Data Center: Activo / Spare}
+\label{fig:servers_per_dc}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/all_dcs_fig2_by_dc.png}}}
+\caption{Desglose de Capacidad por Data Center: Sistema, Spare, Fragmentación, Reservado y Libre}
+\label{fig:dc_usage_rsc}
+\end{figure}
+
+
+
+
+\subsection{Utilización de Recursos}
+
+Esta sección analiza la utilización de los recursos dentro de los Data Centers de la Región 9, diferenciando entre la carga operativa local y la carga proyectada ante escenarios de contingencia. Se definen dos métricas clave para este análisis:
+
+\begin{itemize}
+    \setlength\itemsep{0em}
+    \item \textbf{Utilización Local:} Representa el consumo de recursos de las VMs en relación con los cores asignados. Para CPU y Memoria, se calcula tomando el percentil 95 (P95) de la utilización agrupada por hora en una ventana de 14 días. Para el Disco, se considera únicamente la última muestra de utilización disponible.
+    \item \textbf{Utilización Efectiva:} Corresponde a la utilización local más la carga adicional estimada que el Data Center debería absorber en un escenario de failover. Este cálculo considera la caída de un Data Center redundante y la redistribución de tráfico hacia la Región, según las políticas de redundancia definidas para cada VNF.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/all_dcs_fig3_normalized_by_dc.png}}}
+    \caption{Porcentaje de Utilización por Data Center: Local vs Efectiva (CPU, Memoria y Disco)}
+    \label{fig:dc_usage_effective}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Utilización Efectiva y Local Agregada de VMs por Data Center. \protect\\ \small{\textit{Representa la carga consolidada de todas las VMs alojadas en cada DC.}}}
+\label{tab:dc_utilization}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Data Center} &
+\textbf{Util. Efect. CPU (\%)} &
+\textbf{Util. Efect. MEM (\%)} &
+\textbf{Util. Local CPU (\%)} &
+\textbf{Util. Local MEM (\%)} &
+\textbf{Util. Disk (\%)} \\
+\midrule
+    
+        Nextengo Nacional &
+        38.81 &
+        62.98 &
+        27.19 &
+        54.61 &
+        78.43 \\
+    
+        Nextengo Regional &
+        58.65 &
+        60.27 &
+        38.95 &
+        45.86 &
+        61.95 \\
+    
+        San Juan &
+        73.63 &
+        62.16 &
+        51.60 &
+        46.11 &
+        67.09 \\
+    
+        Popotla &
+        37.04 &
+        19.19 &
+        26.07 &
+        15.69 &
+        53.88 \\
+    
+\midrule
+    \textbf{Promedio Region 9} &
+    \textbf{57.69} &
+    \textbf{52.74} &
+    \textbf{N/A} &
+    \textbf{N/A} &
+    \textbf{67.90} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
+\subsection{Distribución de VNFs por Data Center}
+
+Esta sección presenta la distribución de \textbf{tipos de VNF} en los distintos Data Centers de la Región 9. La visualización permite identificar la concentración y dispersión del despliegue de VNFs a nivel regional, facilitando el análisis de balanceo de carga entre sitios.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/all_dcs_dc_vnf_matrix.png}}
+    \caption{Distribución de VNFs por Data Center: Región 9}
+    \label{fig:vnf_dc_distribution}
+\end{figure}
+
+\section{Análisis de Carga por Instancia de VNF}
+
+La siguiente tabla presenta un resumen de la carga por \textbf{Instacia de VNF}, destacando los valores más altos y más bajos de utilización de CPU (P95) dentro del periodo analizado, con el objetivo de apoyar la priorización de revisión y ajuste de capacidad.
+
+
+\begin{table}[H]
+\centering
+\caption{Top 10 VNFs por Utilización de CPU (P95)}
+\label{tab:top10_vnf_region}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Instancia de VNF & Data Center & Utilizacion Local CPU & CPU Efec. & Utilizacion Local RAM & RAM Efec. & Disco \\
+ & & (\%) & (\%) & (\%) & (\%) & (\%) \\
+\midrule
+    
+        PGWU01 &
+        San Juan &
+        95.38 &
+        128.72 &
+        45.91 &
+        54.91 &
+        54.72 \\
+    
+        PGWU01 &
+        Nextengo Regional &
+        94.23 &
+        127.39 &
+        44.44 &
+        53.54 &
+        55.04 \\
+    
+        SBG01 &
+        San Juan &
+        82.18 &
+        125.66 &
+        55.82 &
+        78.02 &
+        99.36 \\
+    
+        DRA01 &
+        San Juan &
+        80.83 &
+        137.64 &
+        33.49 &
+        46.78 &
+        78.92 \\
+    
+        MME01 &
+        San Juan &
+        69.41 &
+        94.20 &
+        15.90 &
+        18.98 &
+        79.40 \\
+    
+        CSCF02 &
+        San Juan &
+        68.34 &
+        117.55 &
+        79.34 &
+        119.09 &
+        100.00 \\
+    
+        PGWC01 &
+        San Juan &
+        66.24 &
+        89.33 &
+        37.44 &
+        44.54 &
+        73.08 \\
+    
+        CSCF01 &
+        San Juan &
+        66.14 &
+        115.35 &
+        79.16 &
+        118.91 &
+        100.00 \\
+    
+        AFG01 &
+        Nextengo Nacional &
+        65.15 &
+        65.15 &
+        66.06 &
+        66.06 &
+        44.51 \\
+    
+        PGWC01 &
+        Nextengo Regional &
+        64.89 &
+        87.73 &
+        34.84 &
+        42.25 &
+        72.46 \\
+    
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\section{Oportunidades de Mejora}
+
+Esta sección identifica \textbf{Instancias de VNF} con una alta proporción de recursos reservados que permanecen sin uso (recursos ociosos). El objetivo es identificar posibles oportunidades de optimización y reasignación de capacidad.
+
+\textbf{Metodología:}
+\begin{itemize}
+    \item \textbf{Recursos Ociosos (Idle):} Se calculan como la diferencia entre recursos \textbf{reservados} y \textbf{utilización efectiva}. Como metrica para el calculo de CPU y RAM se recurrea a la utilización efectiva y para el disco se estima la capacidad libre a partir del porcentaje de uso reportado.
+    \item \textbf{Criterio de Ranking:} Se seleccionan los \textbf{Top 10} tipos de VNF con mayor valor absoluto de recursos ociosos (vCPUs, GB de RAM, TB de disco), con el fin de priorizar el impacto potencial en la capacidad de la Región.
+    \item \textbf{Visualización:} Se presenta un resumen visual de los Top 10 tipos de VNF con mayor cantidad de recursos ociosos, categorizados por tipo de recurso (CPU, RAM, Disco), para facilitar la identificación rápida de las VNFs más candidatas a optimización.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/9_top_cpu.png}}
+\caption{Top 10 VNFs: CPU Ociosa (Resumen Visual)}
+\label{fig:top_cpu_idle}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Top 10 VNFcs: Region 9 Cantidad de CPU Ociosa}
+\label{tab:top10_idle_cpu}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Instancia de VNFc & vCPUs Reservadas & vCPUs Ociosas & Util. Efec. CPU & Util Local CPU \\
+\midrule
+
+PCRF01 Nextengo Regional PL & 1258 & 1142.1 (90.79\%) & 115.9 (9.21\%) & 115.9 (9.21\%) \\
+
+PCRF02 Nextengo Regional PL & 1258 & 1104.3 (87.78\%) & 153.7 (12.22\%) & 153.7 (12.22\%) \\
+
+PCRF02 Popotla PL & 1258 & 1003.8 (79.79\%) & 254.2 (20.21\%) & 254.2 (20.21\%) \\
+
+PCRF01 Popotla PL & 1258 & 1003.3 (79.76\%) & 254.7 (20.24\%) & 254.7 (20.24\%) \\
+
+PCRF02 San Juan PL & 1258 & 855.3 (67.99\%) & 402.7 (32.01\%) & 402.7 (32.01\%) \\
+
+PCRF01 San Juan PL & 1258 & 848.8 (67.48\%) & 409.2 (32.52\%) & 409.2 (32.52\%) \\
+
+PGWU01 Popotla VSFO & 1020 & 590.9 (57.93\%) & 429.1 (42.07\%) & 259.6 (25.46\%) \\
+
+PGWU02 Popotla VSFO & 1020 & 590.6 (57.90\%) & 429.4 (42.10\%) & 259.9 (25.48\%) \\
+
+Miscelaneos01 Nextengo Nacional Undefined & 463 & 406.0 (87.70\%) & 57.0 (12.30\%) & 57.0 (12.30\%) \\
+
+HSS01 Nextengo Regional PL & 320 & 281.1 (87.85\%) & 38.9 (12.15\%) & 21.4 (6.69\%) \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/9_top_mem.png}}
+\caption{Top 10 VNFs: Memoria RAM Ociosa (Resumen Visual)}
+\label{fig:top_ram_idle}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Top 10 VNFcs: Region 9 Cantidad de Memoria RAM Ociosa}
+\label{tab:top10_idle_mem}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Instancia de VNFc & RAM Reservada (GB) & RAM Ociosa (GB) & Util. Efec. MEM & Util Local MEM \\
+\midrule
+
+MME01 Nextengo Regional GPB & 2700.0 & 2285.8 (84.66\%) & 414.2 (15.34\%) & 337.4 (12.49\%) \\
+
+MME01 Popotla GPB & 2700.0 & 2249.1 (83.30\%) & 450.9 (16.70\%) & 374.8 (13.88\%) \\
+
+MME01 San Juan GPB & 2700.0 & 2240.5 (82.98\%) & 459.5 (17.02\%) & 385.2 (14.27\%) \\
+
+PCRF02 Nextengo Regional PL & 2368.0 & 1973.6 (83.35\%) & 394.4 (16.65\%) & 394.4 (16.65\%) \\
+
+PCRF01 Popotla PL & 2368.0 & 1959.4 (82.74\%) & 408.6 (17.26\%) & 408.6 (17.26\%) \\
+
+PCRF02 Popotla PL & 2368.0 & 1948.4 (82.28\%) & 419.6 (17.72\%) & 419.6 (17.72\%) \\
+
+PCRF01 Nextengo Regional PL & 2368.0 & 1940.8 (81.96\%) & 427.2 (18.04\%) & 427.2 (18.04\%) \\
+
+PCRF02 San Juan PL & 2368.0 & 1920.4 (81.10\%) & 447.6 (18.90\%) & 447.6 (18.90\%) \\
+
+PCRF01 San Juan PL & 2368.0 & 1800.2 (76.02\%) & 567.8 (23.98\%) & 567.8 (23.98\%) \\
+
+PGWU01 Popotla VSFO & 1920.0 & 1663.2 (86.63\%) & 256.8 (13.37\%) & 168.6 (8.78\%) \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{\detokenize{/usr/local/iquall/mat/shared/workflow/9yd-1n5-vuz/h11-uhq-54g/figs/9_top_disk.png}}
+\caption{Top 10 VNFs: Almacenamiento Ocioso (Resumen Visual)}
+\label{fig:top_disk_idle}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Top 10 VNFcs: Region 9 Cantidad de Almacenamiento Ocioso}
+\label{tab:top10_idle_disk}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Instancia de VNFc & Disco Reservado (GB) & Disco Ocioso (GB) & Util. Disco \\
+\midrule
+
+EDA11 Nextengo Regional PG & 5260.0 & 5125.9 (97.45\%) & 134.2 (2.55\%) \\
+
+EDA11 San Juan PG & 4750.0 & 4662.7 (98.16\%) & 87.3 (1.84\%) \\
+
+CUDB11 Nextengo Regional PL & 7200.0 & 3347.0 (46.49\%) & 3853.0 (53.51\%) \\
+
+Miscelaneos01 Nextengo Nacional Undefined & 7257.1 & 2439.0 (33.61\%) & 4818.2 (66.39\%) \\
+
+CUDB11 San Juan PL & 7200.0 & 2388.1 (33.17\%) & 4812.0 (66.83\%) \\
+
+EPDG01 Nextengo Nacional VSFO & 1280.0 & 1018.9 (79.60\%) & 261.2 (20.40\%) \\
+
+EPDG01 San Juan VSFO & 1280.0 & 998.3 (78.00\%) & 281.7 (22.00\%) \\
+
+NEF0 Nextengo Nacional SC & 1000.0 & 957.4 (95.74\%) & 42.6 (4.26\%) \\
+
+CUDB11 Nextengo Regional SC & 1340.0 & 844.9 (63.06\%) & 495.1 (36.94\%) \\
+
+PGWU01 Popotla VSFO & 1200.0 & 696.0 (58.00\%) & 504.0 (42.00\%) \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
+\appendix
+\newpage
+\section{Anexo: Metodología de Cálculo}
+
+\subsection{Análisis de Redundancia Geográfica (Failover)}
+
+Failover es un caso donde múltiples VNFs según su esquema de redundancia geográfica en caso de la caída de un Datacenter del pool redistribuyen su tráfico a las VNFs y por ende a los DCs de la Región 9. Esto se ve solo como un aumento de la utilización efectiva y no de la reserva Efectiva dado que la reserva de VMs no escala.
+
+La siguiente tabla detalla el esquema de redundancia geográfica para la Región 9:
+
+\begin{table}[H]
+\centering
+\caption{Tabla de Redundancias Geográficas - Región 9}
+\label{tab:geo_redundancy_r9}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{VNF} & \textbf{Sitios de Redundancia} & \textbf{Tipo de Redundancia} \\
+\midrule
+    
+        
+            AAA &
+            Revolución, Madero, Nextengo, San Juan &
+            Pool \\
+        
+    
+        
+            AFG &
+            Revolución, Nextengo &
+            Pool \\
+        
+    
+        
+            BGF &
+            Nextengo, San Juan &
+            Pool \\
+        
+    
+        
+            CSCF &
+            San Juan, Nextengo &
+            Pool \\
+        
+    
+        
+            CUDB &
+            San Juan, Nextengo &
+            Pool \\
+        
+    
+        
+            DRA &
+            San Juan, Nextengo &
+            Pool \\
+        
+    
+        
+            EDA &
+            San Juan, Nextengo &
+            Activo-Pasivo \\
+        
+    
+        
+            EPDG &
+            Revolución, Mayo, Nextengo, San Juan &
+            Pool \\
+        
+    
+        
+            HLR &
+            Nextengo, Popotla &
+            Pool \\
+        
+    
+        
+            HSS &
+            Popotla, Nextengo &
+            Pool \\
+        
+    
+        
+            IPWorks &
+            San Juan, Nextengo &
+            Pool \\
+        
+    
+        
+            MME &
+            Nextengo, Popotla, San Juan &
+            Pool \\
+        
+    
+        
+            MRF &
+            Nextengo, San Juan &
+            Pool \\
+        
+    
+        
+            MTAS &
+            Nextengo, San Juan &
+            Pool \\
+        
+    
+        
+            PCRF &
+            San Juan, Nextengo &
+            Pool \\
+        
+    
+        
+            PDRA &
+            Nextengo, San Juan &
+            Pool \\
+        
+    
+        
+            PGWC &
+            Nextengo, Popotla, San Juan &
+            Pool \\
+        
+    
+        
+            PGWU &
+            San Juan, Popotla, Nextengo &
+            Pool \\
+        
+    
+        
+            SBG &
+            San Juan, Nextengo &
+            Pool \\
+        
+    
+        
+            UPG &
+            Revolución, Nextengo &
+            Pool \\
+        
+    
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\subsection{Definiciones}
+\label{sec:definiciones_utilizacion}
+
+\begin{itemize}
+    \item \textbf{Failover:} Escenario de contingencia en el que, ante la caída del Data Center más grande de un \textit{pool} de redundancia geográfica, el tráfico/carga se redistribuye parcial o totalmente hacia las VNFs del resto de Data Centers del \textit{pool}.
+    \item \textbf{Utilización Efectiva:} Carga proyectada para la Región que combina el uso local observado en las VMs (p. ej., P95 de CPU/RAM) con una componente adicional asociada al \textbf{failover}. Esta componente se estima por tipo de VNF y por recurso (CPU/RAM) mediante un indicador de traspaso de carga, que determina qué proporción de la carga del Data Center fallido se reflejaría como incremento de utilización en la Región.
+    \item \textbf{Reserva Efectiva:} Margen de recursos reservado a nivel de VMs respecto a la capacidad \textbf{neta} de los servidores; para este cálculo se excluye la capacidad clasificada como \textit{spare}.
+\end{itemize}
+
+\subsection{Alcance y Configuración}
+El análisis se basa en el siguiente alcance y parámetros de configuración:
+\begin{itemize}
+    \item \textbf{Agregación Regional:} La Región 9 se define como la agregación de recursos de los Data Centers: Nextengo Nacional, Nextengo Regional, San Juan, Popotla.
+    \item \textbf{Clusters de Reserva:} Los clusters designados como \texttt{ceeaz06} se clasifican como capacidad de Reserva (Spare). Estos recursos se excluyen de los cálculos de Capacidad Efectiva Disponible de la Región ($EC_{Region}$) agregado para reflejar la capacidad de producción activa.
+    \item \textbf{Factores de Overcommit:} Se aplica un factor de overcommit de 1 ($overcommit = 1$) tanto para recursos de CPU como de Memoria, derivado del análisis del hipervisor.
+\end{itemize}
+
+Las métricas de capacidad efectiva y reserva se calculan de la siguiente manera:
+
+\textbf{Definiciones:}
+\begin{itemize}
+    \item $m = 0.05$ (Margen de Seguridad, 5\%)
+    \item $VCPU_s$: vCPUs disponibles para el servidor
+    \item $Reserve_{CPU}$: vCPUs reservadas por servidor
+    \item $NC$: Capacidad Neta (Total vCPU o RAM sin los servidores de spare)
+    \item $RC$: Capacidad Bruta (Total vCPU o RAM)
+    \item $overcommit_{CPU}$ o $overcommit_{MEM}$: Factor de overcommit para CPU o Memoria
+\end{itemize}
+
+\subsection{Cálculos a Nivel de Servidor}
+\begin{itemize}
+    \item \textbf{Capacidad Efectiva Disponible (EC) - CPU:}
+    $$ EC_{CPU} = VCPU_s \times overcommit_{CPU} - Reserve_{CPU} - m \times VCPU_s $$
+    
+    \item \textbf{Porcentaje de Capacidad Efectiva Disponible (ECP) - CPU:}
+    $$ ECP_{CPU} = \frac{EC_{CPU}}{VCPU_s \times overcommit_{CPU}} \times 100 $$
+
+    \item \textbf{Capacidad Efectiva Disponible (EC) - Memoria:}
+    $$ EC_{MEM} = RAM_s \times overcommit_{MEM} - Reserve_{MEM} - m \times RAM_s $$
+    
+    \item \textbf{Porcentaje de Capacidad Efectiva Disponible (ECP) - Memoria:}
+    $$ ECP_{MEM} = \frac{EC_{MEM}}{RAM_s \times overcommit_{MEM}} \times 100 $$
+    
+    \item \textbf{Reserva Efectiva (ER):}
+    $$ ER = 100 - ECP $$
+\end{itemize}
+
+Para los calculos de utilización efectiva ver Anexo (\ref{sec:calculo_utilizacion_efectiva}).
+
+\subsection{Cálculos a Nivel de Data Center}
+\begin{itemize}
+    \item \textbf{Capacidad Neta (NC):}
+    $$ NC = \sum Capacity_{serv} \quad \text{(para todos los servidores en el DC que no sean de spare)} $$
+    
+    \item \textbf{Capacidad Efectiva Disponible del DC ($EC_{DC}$):}
+    $$ EC_{DC} = \sum EC_{serv} \quad \text{(para todos los servidores en el DC)} $$
+    
+    \item \textbf{Porcentaje de Capacidad Efectiva Disponible del DC ($ECP_{DC}$):}
+    $$ ECP_{DC} = \frac{EC_{DC}}{NC} \times 100 $$
+    
+    \item \textbf{Reserva Efectiva del DC (ER):}
+    $$ ER = 100 - ECP_{DC} $$
+\end{itemize}
+
+Para los calculos de utilización efectiva ver Anexo (\ref{sec:calculo_utilizacion_efectiva}).
+
+\subsection{Cálculo de Utilización Efectiva}
+\label{sec:calculo_utilizacion_efectiva}
+La Utilización Efectiva se define como la carga proyectada que debe soportar el Data Center en un escenario de estrés máximo, combinando la operación normal con situaciones de contingencia geográfica.
+
+El cálculo se realiza considerando los siguientes componentes:
+\begin{itemize}
+    \item \textbf{Utilizacion Local:} Se parte del percentil 95 (P95) de utilización de CPU y Memoria de las VMs existentes en el Data Center, se agrupa por hora y del mismo se toma el máximo.
+    \item \textbf{Carga de Contingencia:} Es la carga que la VNF debe aboserver en caso de un failover, para su calculo se simula la caída del Data Center más grande dentro del pool de redundancia geográfica. El tráfico de las VNFs afectadas se redistribuye (parcial o totalmente) hacia las VNFs de los DC en dicho pool. 
+    \item \textbf{Indicador de Traspaso de Carga:} Para cada VNF y tipo de recurso (CPU/RAM) se define un factor específico que determina qué proporción de la carga del DC fallido se vería reflejada efectivamente como un aumento de utilización en este Data Center.
+\end{itemize}
+
+$$ \text{Utilización Efectiva} = \text{Utilizacion Local} + (\text{Carga de Contingencia} \times \text{Indicador de Traspaso}) $$
+
+\subsection{Clusters Excluidos}
+Para el analisis del presente documento se excluyen los siguientes clusters:
+\begin{itemize}
+    \item Internal
+\end{itemize}
+
+
+
+\end{document}
